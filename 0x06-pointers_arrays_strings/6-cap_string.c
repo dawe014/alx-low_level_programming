@@ -1,27 +1,34 @@
-#include"main.h"
-#include<string.h>
-#include<ctype.h>
-/**
- * cap_string - Capitalize all words of string
- * @str: string to capitalize
- * Return: pointer to capitalized string
-*/
-char *cap_string(char *str)
-{
-	size_t len = strlen(str);
-	size_t i;
+#include "main.h"
 
-	for (i = 0; i < len; i++)
+/**
+ * cap_string - capitalizes everey word of a string
+ * @s: string to modify
+ *
+ * Return: the resulting string
+ */
+char *cap_string(char *s)
+{
+	int i, j;
+
+	char spe[13] = {' ', '\t', '\n', ',', ';', '.',
+		'!', '?', '"', '(', ')', '{', '}'};
+
+	for (i = 0; s[i] != '\0'; i++)
 	{
-		if (str[i] == ' ' || str[i] == '\n' || str[i] == '\t')
+		if (i == 0 && s[i] >= 'a' && s[i] <= 'z')
+			s[i] -= 32;
+
+		for (j = 0; j < 13; j++)
 		{
-			str[i + 1] = toupper((unsigned char)str[i + 1]);
-		}
-		else if (str[i] == '.')
-		{
-			if (str[i + 1] != ' ' || str[i + 1] != '\n' || str[i + 1] != '\t')
-				str[i + 1] = toupper((unsigned char)str[i + 1]);
+			if (s[i] == spe[j])
+			{
+				if (s[i + 1] >= 'a' && s[i + 1] <= 'z')
+				{
+					s[i + 1] -= 32;
+				}
+			}
 		}
 	}
-	return (str);
+
+	return (s);
 }
