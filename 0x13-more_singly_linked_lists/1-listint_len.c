@@ -9,13 +9,11 @@
  */
 size_t listint_len(const listint_t *h)
 {
-	const listint_t *ptr;
-	size_t i;
+	size_t i = 0;
 
-	ptr = malloc(sizeof(listint_t));
-ptr = h;
-	while (ptr != NULL)
+	while (h != NULL)
 	{
+		h = h->next;
 		i++;
 	}
 	return (i);
