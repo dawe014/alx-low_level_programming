@@ -1,5 +1,5 @@
 #include "main.h"
-
+#include<string.h>
 
 /**
  * _stringlen - find the length of a string
@@ -30,6 +30,8 @@ unsigned int binary_to_uint(const char *b)
 	unsigned int num = 0;
 	int i, len;
 
+if (b == NULL)
+return (0);
 	len = _stringlen(b);
 
 	for (i = 0; i != len; i++)
