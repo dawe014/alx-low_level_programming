@@ -2,23 +2,6 @@
 #include<string.h>
 
 /**
- * _stringlen - find the length of a string
- * @ch: pointer to the string to check
- * Return: void
-*/
-
-
-int _stringlen(const char *ch)
-{
-int i = 0;
-while (ch[i])
-	i++;
-
-return (i);
-}
-
-
-/**
  * binary_to_uint - converts a binary number to an unsigned int
  * @b: binary number
  *
@@ -27,19 +10,28 @@ return (i);
 
 unsigned int binary_to_uint(const char *b)
 {
-	unsigned int num = 0;
-	int i, len;
+	unsigned int num;
+	int len, basetwo;
 
-if (b == NULL)
-return (0);
-	len = _stringlen(b);
+	if (!b)
+		return (0);
 
-	for (i = 0; i != len; i++)
+	num = 0;
+
+	for (len = 0; b[len] != '\0'; len++)
+		;
+
+	for (len--, basetwo = 1; len >= 0; len--, basetwo *= 2)
 	{
-		if (b[len - i - 1] == '1')
-			num += 1 << i;
-		else if (b[len - i - 1] != '0')
+		if (b[len] != '0' && b[len] != '1')
+		{
 			return (0);
+		}
+
+		if (b[len] & 1)
+		{
+			num += basetwo;
+		}
 	}
 
 	return (num);
