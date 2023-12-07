@@ -1,18 +1,18 @@
 #include "lists.h"
-
 /**
  * free_dlistint - Free list
  * @head: struct
  * Return: void
  */
+
 void free_dlistint(dlistint_t *head)
 {
-	dlistint_t *node;
+	dlistint_t *list;
 
 	while (head)
 	{
-		node = head;
+		list = head;
 		head = head->next;
-		free(node);
+		free(list);
 	}
 }
